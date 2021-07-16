@@ -6,7 +6,6 @@ import chainer
 import sys, os
 from chainer import cuda, serializers
 from chainer import functions as chf
-from progressbar import progressbar
 import librosa
 import soundfile as sf
 import pickle as pic
@@ -342,7 +341,7 @@ if __name__ == "__main__":
     else:
         import cupy as xp
         print("Use GPU " + str(args.gpu))
-        cuda.get_device_from_id(args.gpu).use()
+        xp.cuda.Device(args.gpu).use()
         speech_VAE.to_gpu()
 
     wav, fs = sf.read(args.input_fileName)

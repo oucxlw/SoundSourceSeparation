@@ -5,7 +5,6 @@ import numpy as np
 import chainer
 from chainer import functions as chf
 from chainer import cuda, serializers
-from progressbar import progressbar
 import librosa
 import soundfile as sf
 import sys, os
@@ -253,7 +252,7 @@ if __name__ == "__main__":
     else:
         import cupy as xp
         print("Use GPU " + str(args.gpu))
-        chainer.cuda.get_device_from_id(args.gpu).use()
+        xp.cuda.Device(args.gpu).use()
 
     sys.path.append("../DeepSpeechPrior")
     import network_VAE
